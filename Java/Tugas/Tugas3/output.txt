@@ -1,0 +1,55 @@
+Nama			: Anthony
+NPM			: 20
+Umur			: 1606031465
+Alamat orangtua		:
+Nama Jalan		: Margonda
+Nomor Rumah		: 25
+Kode Pos		: 14644
+Nama Penanggung Jawab	: Ginting
+Alamat kost		: - 
+Alamat asrama		: - 
+
+Nama			: Evi
+NPM			: 23
+Umur			: 1706106715
+Alamat orangtua		: - 
+Alamat kost		: - 
+Alamat asrama		:
+Nama Jalan		: Pahlawan
+Nomor Jalan		: 23
+Nama Asrama		: Mawar
+Nomor Kamar		: 165
+Masa Tinggal di Asrama	: 3
+
+Nama			: Rose
+NPM			: 24
+Umur			: 1706106676
+Alamat orangtua		:
+Nama Jalan		: Margonda
+Nomor Rumah		: 21
+Kode Pos		: 16466
+Nama Penanggung Jawab	: Salieri
+Alamat kost		:
+Nama Jalan		: Kutek
+Nomor Rumah		: 25
+Nomor Kamar		: 166
+Kode Pos		: 16566
+Nama Pemilik Kost	: Abas
+Alamat asrama		: - 
+
+Nama			: Riyadi
+NPM			: 1706106936
+Umur			: 24
+Alamat orangtua		:
+Nama Jalan		: Esmeralda
+Nomor Rumah		: 24
+Kode Pos		: 16465
+Nama Penanggung Jawab	: Erna
+Alamat kost		:
+Nama Jalan		: Banjaran
+Nomor Rumah		: 25
+Nomor Kamar		: 133
+Kode Pos		: 16465
+Nama Pemilik Kost	: Rie
+Alamat asrama		: - 
+

@@ -1,0 +1,3 @@
+Anthony;1606031465;20;Y;Margonda;25;14644;Ginting;N;-;-;-;-;-;N;-;-;-;-;-
+Rose;1706106676;24;Y;Margonda;21;16466;Salieri;Y;Kutek;25;166;16566;Abas;N;-;-;-;-;-
+Evi;1706106715;23;N;-;-;-;-;N;-;-;-;-;-;Y;Pahlawan;23;Mawar;165;3
