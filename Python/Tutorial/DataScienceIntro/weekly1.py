@@ -1,6 +1,6 @@
 from sklearn import ensemble
 
-kls = ensemble.RandomForestClassifier()
+kls = ensemble.RandomForestClassifier() #random forest classifier
 
 #fungsi prediksi
 def prediction (height, weight, shoes) :
