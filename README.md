@@ -1,6 +1,4 @@
 # Riyadi Setiawan's Project
 
-This is a collection of my project.
-All of my project created when I got bored, wanna try something new, or with specific purpose.
+This is a collection of my project which I make by learning from books, website, or some experiment which I want to try out by myself
 
-Test Change
