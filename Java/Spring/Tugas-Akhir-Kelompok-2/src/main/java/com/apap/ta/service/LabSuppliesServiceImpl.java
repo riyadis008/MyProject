@@ -43,6 +43,11 @@ public class LabSuppliesServiceImpl implements LabSuppliesService {
 	public Optional<LabSuppliesModel> getLabSuppliesByNama(String nama) {
 		return labSuppliesDb.findByNama(nama);
 	}
+
+	@Override
+	public List<LabSuppliesModel> getAllSuppliesList() {
+		return labSuppliesDb.findAll();
+	}
 	
 
 }

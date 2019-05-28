@@ -12,5 +12,6 @@ public interface LabSuppliesService {
 		Optional<LabSuppliesModel> getLabSuppliesById(int id);
 		List<LabSuppliesModel> getLabSuppliesByJenis(String jenis);
 		Optional<LabSuppliesModel>getLabSuppliesByNama(String nama);
+		List<LabSuppliesModel> getAllSuppliesList();
 
 }

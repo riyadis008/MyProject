@@ -12,6 +12,20 @@
     <nav th:replace="fragments/fragment :: navbar"></nav>
 
     <div class="container-fluid">
+    <br>	
+        <div>
+        <form th:action="@{/lab/stok}" method="get">
+        	<button type="submit" class="btn btn-primary">Cek Stok Lab</button>
+        	</form>
+        </div>
+    
+    
+     	<br>	
+        <div>
+        <form th:action="@{/lab/stok/tambah}" method="get">
+        	<button type="submit" class="btn btn-primary">Tambah Stok Lab</button>
+        	</form>
+        </div>
     
     <br>
         
