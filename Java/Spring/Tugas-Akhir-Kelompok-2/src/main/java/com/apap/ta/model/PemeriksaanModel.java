@@ -39,18 +39,18 @@ public class PemeriksaanModel implements Serializable {
     @JsonIgnore
     private PasienModel pasien;
 	
-	@NotNull
-    @Column(name = "tanggal_pemeriksaan", nullable = false)
+	
+    @Column(name = "tanggal_pemeriksaan", nullable = true)
     private Date tanggalPemeriksaan;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "jenis", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "jenis", referencedColumnName = "id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private JenisPemeriksaanModel jenis;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_jadwal", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "id_jadwal", referencedColumnName = "id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private JadwalJagaModel jadwal;

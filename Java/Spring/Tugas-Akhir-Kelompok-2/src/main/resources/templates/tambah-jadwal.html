@@ -13,100 +13,55 @@
 
     <div class="container-fluid">
     
-    <h2 th:text="'Hello '+${#httpServletRequest.remoteUser}+ ' !' "></h2>
-    <br>
-    
-    <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Tambah Jadwal Pasien
-                    </div>
-                    <div class="card-body">
-                        <form th:action="@{/lab/jadwal-jaga/tambah}" method="post">
-                         
-                         <div class="row form-group">
-								<label class="col-sm-4"> Tanggal</label>
-								<input class="col-sm-8 form-control input-sm"  type="Date" name="tanggal">
-							</div>
-							
-							 <div class="row form-group">
-								<label class="col-sm-4"> Waktu Mulai</label>
-								<input class="col-sm-8 form-control input-sm"  type="Text" name="wmulai">
-							</div>
-							
-							 <div class="row form-group">
-								<label class="col-sm-4"> Waktu Selesai</label>
-								<input class="col-sm-8 form-control input-sm"  type="Text" name="wselesai">
-							</div>
-                        
-                           <div class="row form-group">
-                                <label class="col-sm-4">Nama Staff</label>
-                               <select  name="staffId">
-                               		<option th:value=0>Pilih Staff</option>
-                                	<option th:each="staff : ${staffList}" th:value="${staff.id}" th:text="${staff.nama}" ></option>
-                  
-                                </select>
-                            </div>
-                 
-                            <div>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
-                        </form>
-                        <br>
-							<p style="color:red" th:text="${notif}"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--  
+    <h2 th:text="'Masukkan Jadwal ' "></h2>
+   
+  
+       <div class="container-fluid" >
         <br>
-         <div class="row">
+        <div class="row">
             <div class="col-md-8">
                    
-                        <form th:action="@{/lab/jadwal-jaga/tambah}" th:object="${jadwal}"  method="POST">
+                        <form  th:action="@{/lab/jadwal-jaga/tambah}" th:object="${jadwalJaga}" method="post">
                            
 
-                            <table>
+                            <table > 
                                 <thead>
                                     <tr>
                                         <th style="text-align: center">Tanggal</th>
                                         <th style="text-align: center">Waktu Mulai</th>
                                         <th style="text-align: center">Waktu Selesai</th>
                                         <th style="text-align: center">Nama Staff</th>
-                                        <th style="text-align: center">
-                                            <button type="submit" name="addRow" >Add Flight</button>
-                                        </th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr >
                                         <td>
-                                            <input type="date" th:field="*{jadwal.tanggal}">
+                                          <input type="Date" name="tanggal" th:attr="min=${tanggalSekarang}">
                                         </td>
                                         <td>
-                                            <input type="text" th:field="*{jadwal.waktuMulai}">
+                                         <input type="text" name="wmulai">
                                         </td>
                                         <td>
-                                            <input type="text" th:field="*{jadwal.waktuSelesai}">
+                                           <input type="text" name="wselesai">
                                         </td>
                                         <td>
-                                        <select  name="staffId" th:field="*{jadwal.idStaff}" >
-                                			<option th:each="staff : ${staffList}" th:value="${staff}" th:text="${staff.nama}" ></option>
-                                		</select>
+                                            <select name="staffId">
+                               					<option th:value=0>Pilih Staff</option>
+                                				<option th:each="staff : ${staffList}" th:value="${staff.id}" th:text="${staff.nama}" ></option>
+                                			</select>
                                         </td>
                                         
                                     </tr>
                                 </tbody>
                             </table>
                             <br>
-                            <button type="submit" name="save" >Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
-      -->
-        
+      
    
       
         

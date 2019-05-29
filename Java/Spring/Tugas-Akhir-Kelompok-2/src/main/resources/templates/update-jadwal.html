@@ -26,7 +26,7 @@
                         <form th:action="@{/lab/jadwal-jaga/ubah}" th:object="${jadwalJaga}" method="POST">
                             <input type="hidden" name="id" th:value="${jadwalJaga.id}" />
                             Tanggal <br>
-                            <input type="date" name="tanggal" th:value="${jadwalJaga.tanggal}" />
+                            <input type="date" name="tanggal" th:value="${jadwalJaga.tanggal}" th:attr="min=${tanggalSekarang}" />
                             <br>Jam Mulai <br>
                             <input type="text" name="wmulai" th:value="${jadwalJaga.waktuMulai}" />
                              <br>Jam Selesai <br>

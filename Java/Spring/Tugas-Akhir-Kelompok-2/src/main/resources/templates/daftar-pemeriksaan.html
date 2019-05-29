@@ -29,7 +29,7 @@
 			<tbody>
 			<tr th:each="pemeriksaan : ${listPemeriksaan}">
 			<td align ="center" th:text="${pemeriksaan.pasien.nama}"></td>
-			<td align ="center" th:text="${pemeriksaan.tanggalPemeriksaan}"></td>
+			<td align ="center" th:text="${pemeriksaan.tanggalPengajuan}"></td>
 			<td align ="center" th:if="${pemeriksaan.status}==1">Menunggu Persetujuan</td>
 			<td align ="center" th:if="${pemeriksaan.status}==2">Diproses</td>
 			<td align ="center" th:if="${pemeriksaan.status}==3">Selesai</td>

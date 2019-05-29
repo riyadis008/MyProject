@@ -26,6 +26,7 @@ import com.apap.ta.service.StaffService;
 @RequestMapping("/lab/jadwal-jaga")
 public class JadwalJagaController {
 	DateFormat formatter = new SimpleDateFormat("HH:mm");
+	private long time = System.currentTimeMillis();
 	
 	@Autowired
 	JadwalJagaService jadwalJagaService;
@@ -37,29 +38,28 @@ public class JadwalJagaController {
 	@RequestMapping(value = "/tambah", method = RequestMethod.GET)
 	private String tambahJadwal (Model model) {
 		List<StaffModel> staffList = staffService.getStaffList();
+		JadwalJagaModel jadwalJaga = new JadwalJagaModel();
+		Date tanggalSekarang = new java.sql.Date(time);
+		model.addAttribute("tanggalSekarang", tanggalSekarang);
 		model.addAttribute("staffList", staffList);
+		model.addAttribute("jadwalJaga", jadwalJaga);
 		return "tambah-jadwal";
 	}
 	
 	
 	@RequestMapping(value="/tambah", method = RequestMethod.POST)
-	private String inputJadwal (int staffId, Date tanggal , Model model, String wmulai, String wselesai) throws ParseException {
-		JadwalJagaModel jadwalJaga = new JadwalJagaModel();
+	private String inputJadwal (@ModelAttribute JadwalJagaModel jadwalJaga,int staffId, Model model, String wmulai, String wselesai) throws ParseException {
+		
 		Time wktmulai = new Time (formatter.parse(wmulai).getTime());
 		Time wktselesai = new Time (formatter.parse(wselesai).getTime());
 		jadwalJaga.setWaktuMulai(wktmulai);
 		jadwalJaga.setWaktuSelesai(wktselesai);
+		
 		StaffModel staff = staffService.getStaffById(staffId).get();
 		jadwalJaga.setIdStaff(staff);
-		jadwalJaga.setTanggal(tanggal);
-		
-
-		List<StaffModel> staffList = staffService.getStaffList();
-		model.addAttribute("staffList", staffList);
-		
-		
 		jadwalJagaService.addJadwalJaga(jadwalJaga);
-		return"tambah-jadwal";
+		model.addAttribute("notif", "Data Berhasil Ditambahkan");
+		return"manajemen-jadwal";
 	}
 	
 	@RequestMapping(value="", method = RequestMethod.GET)
@@ -72,6 +72,8 @@ public class JadwalJagaController {
 	@RequestMapping(value = "/ubah/{id}", method = RequestMethod.GET)
 	private String ubahJadwal (@PathVariable(value="id")int id, Model model) {
 		JadwalJagaModel jadwalJaga  =  jadwalJagaService.getJadwalJagaById(id).get();
+		Date tanggalSekarang = new java.sql.Date(time);
+		model.addAttribute("tanggalSekarang", tanggalSekarang);
 		List<StaffModel> staffList = staffService.getStaffList();
 		model.addAttribute("jadwalJaga", jadwalJaga);
 		model.addAttribute("staffList", staffList);

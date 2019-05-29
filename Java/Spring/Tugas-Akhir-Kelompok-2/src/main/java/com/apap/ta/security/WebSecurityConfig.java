@@ -16,10 +16,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure (HttpSecurity http) throws Exception{
+		//vvv buat testing postman vvv
+		/*
+		 http
+		 .csrf().disable()
+         .authorizeRequests()
+         .antMatchers("/**").permitAll();
+		*/
+		
+		
 		http
 			.authorizeRequests()
 			.antMatchers("/css/**").permitAll()
 			.antMatchers("/js/**").permitAll()
+			.antMatchers("/lab/kebutuhan/tambah").hasAnyAuthority("staff_lab","ADMIN")
+			.antMatchers("/lab/kebutuhan/ubah/**").hasAnyAuthority("admin_lab","ADMIN")
+			.antMatchers("/lab/jadwal-jaga/tambah").hasAnyAuthority("admin_lab","ADMIN")
+			.antMatchers("/lab/jadwal-jaga/ubah/**").hasAnyAuthority("admin_lab","ADMIN")
+			.antMatchers("/lab/stok/tambah").hasAnyAuthority("admin_lab","ADMIN")
+			.antMatchers("/lab/stok/ubah/**").hasAnyAuthority("admin_lab","ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -28,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
 			.permitAll();
+	
 		
 	}
 	

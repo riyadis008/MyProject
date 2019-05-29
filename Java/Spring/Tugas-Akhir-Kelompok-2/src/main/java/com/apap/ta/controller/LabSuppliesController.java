@@ -34,9 +34,8 @@ public class LabSuppliesController {
 	@RequestMapping(value="/lab/stok/tambah", method = RequestMethod.POST)
 	private String tambahSupplySubmit (@ModelAttribute LabSuppliesModel labSupplies, Model model) {
 		suppliesService.addLabSupplies(labSupplies);
-		List<LabSuppliesModel> listSupplies = suppliesService.getAllSuppliesList();
-		model.addAttribute("listSupplies", listSupplies);
-		return "stok-supply";
+		model.addAttribute("notif", "Data Berhasil Ditambahkan");
+		return "lab-supplies";
 	}
 	
 	@RequestMapping(value="/lab/stok", method = RequestMethod.GET)

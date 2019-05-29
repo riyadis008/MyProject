@@ -36,31 +36,25 @@ public class KebutuhanReagenController {
 		
 		String jenis = "Reagen";
 		List<LabSuppliesModel> listReagen = suppliesService.getLabSuppliesByJenis(jenis);
+		KebutuhanReagenModel kebReagen = new KebutuhanReagenModel();
 		model.addAttribute("listReagen", listReagen);
+		model.addAttribute("kebReagen", kebReagen);
 		
 		return "tambah-reagen";
 		
 	}
-	
-	
 	
 	@RequestMapping(value = "/kebutuhan/tambah", method = RequestMethod.POST)
-	private String tambahKebutuhanSubmit ( int reagen , int jumlah, Model model) {
-		KebutuhanReagenModel newReagen = new KebutuhanReagenModel();
-		LabSuppliesModel supReagen = suppliesService.getLabSuppliesById(reagen).get();
+	private String tambahKebutuhanSubmit ( @ModelAttribute KebutuhanReagenModel  kebReagen, int reagen, Model model) {
 		Date tanggal = new java.sql.Date(time);
-		newReagen.setTanggalUpdate(tanggal);
-		newReagen.setReagen(supReagen);
-		newReagen.setJumlah(jumlah);
-		newReagen.setStatus(1);
-		reagenService.addKebutuhanReagen(newReagen);
-		String jenis = "Reagen";
-		List<LabSuppliesModel> listReagen = suppliesService.getLabSuppliesByJenis(jenis);
-		model.addAttribute("listReagen", listReagen);
+		LabSuppliesModel supReagen = suppliesService.getLabSuppliesById(reagen).get();
+		kebReagen.setReagen(supReagen);
+		kebReagen.setTanggalUpdate(tanggal);
+		kebReagen.setStatus(1);
+		reagenService.addKebutuhanReagen(kebReagen);
 		model.addAttribute("notif", "Data Berhasil Disimpan");
-		return "tambah-reagen";
+		return "lab-supplies";
 	}
-	
 	
 	@RequestMapping(value = "/kebutuhan", method = RequestMethod.GET)
 	private String viewKebutuhan(Model model) {

@@ -23,7 +23,7 @@
                         Tambah Perencanaan Reagen
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/lab/kebutuhan/tambah}" method="post">
+                        <form th:action="@{/lab/kebutuhan/tambah}" th:object="${kebReagen}" method="post">
                         
                           
                            <div class="row form-group">
@@ -43,8 +43,7 @@
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
-                        <br>
-							<p style="color:red" th:text="${notif}"></p>
+                        
                     </div>
                 </div>
             </div>
