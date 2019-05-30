@@ -44,7 +44,8 @@ public class LabSuppliesController {
 		List<LabSuppliesModel> listReagen = suppliesService.getLabSuppliesByJenis(jenis);
 		for (LabSuppliesModel reagen : listReagen) {
 			if (reagen.getJumlah()==0){
-				model.addAttribute("notif", "Stok  reagen kosong/habis! Silahkan ajukan rencana kebutuhan reagen");
+				String namaReagen = reagen.getNama();
+				model.addAttribute("notif", "Stok reagen "+namaReagen+" kosong/habis! Silahkan ajukan rencana kebutuhan reagen");
 				break;
 			}
 			else {
