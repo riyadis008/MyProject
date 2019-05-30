@@ -1,6 +1,7 @@
 package com.apap.ta.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,18 @@ public class PemeriksaanController {
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	private String updatePemeriksaan(@PathVariable(value="id") int id, Model model) {
 		PemeriksaanModel pemeriksaan = pemeriksaanService.getPemeriksaanById(id).get();
+		int currStatus = pemeriksaan.getStatus();
+		int nextStatus =  currStatus +1;
+		List<Integer> listStatus = new ArrayList<Integer>();
+		if (currStatus == 3) {
+			listStatus.add(currStatus);
+		}
+		else {
+			listStatus.add(currStatus);
+			listStatus.add(nextStatus);
+		}
 		model.addAttribute("pemeriksaan", pemeriksaan);
+		model.addAttribute("listStatus", listStatus);
 		return "update-pemeriksaan";
 	}
 	
@@ -47,11 +59,18 @@ public class PemeriksaanController {
 			if (stok > 0) { //cek supply tidak kosong
 				pemeriksaan.setTanggalPemeriksaan(tanggal);
 				pemeriksaan.getJenis().getSupplies().setJumlah(stok-1);
+				pemeriksaanService.addPemeriksaan(pemeriksaan);
 			}
+			else {
+				model.addAttribute("notif", "Supplies yang dibutuhkan kosong !");
+			}
+		}
+		else if(pemeriksaan.getStatus()==3) {
+			pemeriksaanService.addPemeriksaan(pemeriksaan);
 		}
 		List<PemeriksaanModel> listPemeriksaan = pemeriksaanService.getPemeriksaanList();
 		model.addAttribute("listPemeriksaan", listPemeriksaan);
-		pemeriksaanService.addPemeriksaan(pemeriksaan);
+		
 		return "daftar-pemeriksaan";
 		
 	}

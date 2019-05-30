@@ -45,6 +45,7 @@ public class LabSuppliesController {
 		for (LabSuppliesModel reagen : listReagen) {
 			if (reagen.getJumlah()==0){
 				model.addAttribute("notif", "Stok  reagen kosong/habis! Silahkan ajukan rencana kebutuhan reagen");
+				break;
 			}
 			else {
 				model.addAttribute("notif", "");

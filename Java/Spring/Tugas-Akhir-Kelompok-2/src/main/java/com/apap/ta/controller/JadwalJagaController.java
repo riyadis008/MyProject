@@ -50,6 +50,7 @@ public class JadwalJagaController {
 	@RequestMapping(value="/tambah", method = RequestMethod.POST)
 	private String inputJadwal (@ModelAttribute JadwalJagaModel jadwalJaga,int staffId, Model model, String wmulai, String wselesai) throws ParseException {
 		
+		
 		Time wktmulai = new Time (formatter.parse(wmulai).getTime());
 		Time wktselesai = new Time (formatter.parse(wselesai).getTime());
 		jadwalJaga.setWaktuMulai(wktmulai);
@@ -59,7 +60,7 @@ public class JadwalJagaController {
 		jadwalJaga.setIdStaff(staff);
 		jadwalJagaService.addJadwalJaga(jadwalJaga);
 		model.addAttribute("notif", "Data Berhasil Ditambahkan");
-		return"manajemen-jadwal";
+		return "manajemen-jadwal";
 	}
 	
 	@RequestMapping(value="", method = RequestMethod.GET)
@@ -89,50 +90,11 @@ public class JadwalJagaController {
 		jadwalJaga.setWaktuMulai(wktmulai);
 		jadwalJaga.setWaktuSelesai(wktselesai);
 		jadwalJagaService.addJadwalJaga(jadwalJaga);
-		List<StaffModel> staffList = staffService.getStaffList();
-		model.addAttribute("staffList", staffList);
-		return "home";
-	}
-	
-	
-	/*
-	@RequestMapping(value = "/tambah", method = RequestMethod.GET)
-	private String tambahJadwal (Model model) {
-		List<StaffModel> staffList = staffService.getStaffList();
-		JadwalJagaModel jadwal = new JadwalJagaModel();
-		List<JadwalJagaModel> jadwalJaga = new ArrayList<JadwalJagaModel>();
 		model.addAttribute("jadwalJaga", jadwalJaga);
-		model.addAttribute("staffList", staffList);
-		model.addAttribute("jadwal", jadwal);
-		return "tambah-jadwal";
-	}
-	
-	@RequestMapping(value = "/tambah", method = RequestMethod.GET, params={"addRow"})
-	private String addRow (Model model) {
-		List<StaffModel> staffList = staffService.getStaffList();
-		JadwalJagaModel jadwal = new JadwalJagaModel();
-		model.addAttribute("staffList", staffList);
-		model.addAttribute("jadwal", jadwal);
-		
-		return "tambah-jadwal";
+		return "jadwal-diubah";
 	}
 	
 	
-	@RequestMapping(value="/tambah", method = RequestMethod.POST)
-	private String inputJadwal (int staffId, Date tanggal , Model model, String wmulai, String wselesai) throws ParseException {
-		JadwalJagaModel jadwalJaga = new JadwalJagaModel();
-		Time wktmulai = new Time (formatter.parse(wmulai).getTime());
-		Time wktselesai = new Time (formatter.parse(wselesai).getTime());
-		StaffModel staff = staffService.getStaffById(staffId).get();
-		jadwalJaga.setIdStaff(staff);
-		jadwalJaga.setTanggal(tanggal);
-		jadwalJaga.setWaktuMulai(wktmulai);
-		jadwalJaga.setWaktuSelesai(wktselesai);
-		List<StaffModel> staffList = staffService.getStaffList();
-		model.addAttribute("staffList", staffList);
-		jadwalJagaService.addJadwalJaga(jadwalJaga);
-		return"tambah-jadwal";
-	}
-	*/
+	
 
 }

@@ -34,20 +34,20 @@
                             <input type="hidden" name="jenis" th:value="${pemeriksaan.jenis.id}" />
                             <input type="hidden" name="jadwal" th:value="${pemeriksaan.jadwal.id}" />
                        
-                            <br>Status <br>
+                            <br>Status 
                            
-                           <div class="row form-group">
+                           <div class="row form-group" >
                              
-                               <select  name="status">
-                                	<option  th:value=1  >Menunggu Persetujuan</option>
-                                	<option  th:value=2  >Diproses</option>
-                                	<option  th:value=3  >Selesai</option>
+                               <select   name="status" th:attr="min=${max}" >
+                             	 <option th:each="stats : ${listStatus}" th:value="${stats}" th:text="${stats}" ></option>
                                 </select>
+           
                             </div>
-                            <br>Hasil<br>
-                            <input type="text" name="hasil" th:value="${pemeriksaan.hasil}" />
+                           <p style="color:blue;font-size:14px;" th:text="'*Ket Status = 1 : Menunggu Persetujuan, 2 : Diproses, 3 : Selesai'"> </p>
+                            <label th:if="${pemeriksaan.status}>1">Hasil</label>
+                            <input th:if="${pemeriksaan.status}>1" type="text" name="hasil" th:value="${pemeriksaan.hasil}" /><br>
                           	
-                            <br><br>
+                           <br>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
