@@ -14,6 +14,7 @@ public interface JadwalJagaService {
 	
 	Optional<JadwalJagaModel> getJadwalJagaById(int id);
 	List<JadwalJagaModel> getJadwalJagaByTanggal(Date tanggal);
+	List <JadwalJagaModel> getJadwalJagaList();
 	
 	
 }

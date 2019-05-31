@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.ta.model.JadwalJagaModel;
+import com.apap.ta.model.PemeriksaanModel;
 import com.apap.ta.model.StaffModel;
 import com.apap.ta.service.JadwalJagaService;
+import com.apap.ta.service.PemeriksaanService;
 import com.apap.ta.service.StaffService;
 
 @Controller
@@ -34,6 +36,8 @@ public class JadwalJagaController {
 	@Autowired
 	StaffService staffService;
 	
+	@Autowired
+	PemeriksaanService pemeriksaanService;
 	
 	@RequestMapping(value = "/tambah", method = RequestMethod.GET)
 	private String tambahJadwal (Model model) {
@@ -93,6 +97,34 @@ public class JadwalJagaController {
 		model.addAttribute("jadwalJaga", jadwalJaga);
 		return "jadwal-diubah";
 	}
+	
+	@RequestMapping(value="/jadwal-periksa", method=RequestMethod.GET)
+	private String viewJadwalPemeriksaan (Model model) {
+		List<PemeriksaanModel> listPemeriksaan = pemeriksaanService.getPemeriksaanList();
+		model.addAttribute("listPemeriksaan", listPemeriksaan);
+		return "jadwal-periksa";
+	}
+	
+	@RequestMapping(value="jadwal-periksa/assign/{id}", method = RequestMethod.GET)
+	private String updateJadwalPemeriksaan(@PathVariable(value="id") int id, Model model) {
+		PemeriksaanModel pemeriksaan = pemeriksaanService.getPemeriksaanById(id).get();
+		List<JadwalJagaModel> listJadwalJaga = jadwalJagaService.getJadwalJagaList();
+		model.addAttribute("listJadwalJaga", listJadwalJaga);
+		model.addAttribute("pemeriksaan", pemeriksaan);
+		return "assign-jadwal";
+	}
+	@RequestMapping(value="/jadwal-periksa/assign", method=RequestMethod.POST)
+	private String updatePemeriksaanSubmit(@ModelAttribute PemeriksaanModel pemeriksaan,int idJadwal, Model model) {
+		JadwalJagaModel jadwalJaga = jadwalJagaService.getJadwalJagaById(idJadwal).get();
+		pemeriksaan.setJadwal(jadwalJaga);
+		pemeriksaanService.addPemeriksaan(pemeriksaan);
+		List<PemeriksaanModel> listPemeriksaan = pemeriksaanService.getPemeriksaanList();
+		model.addAttribute("listPemeriksaan", listPemeriksaan);
+		return "jadwal-periksa";
+		
+	}
+	
+	
 	
 	
 	

@@ -37,4 +37,9 @@ public class JadwalJagaServiceImpl implements JadwalJagaService {
 		return jadwalJagaDb.findByTanggal(tanggal);
 	}
 
+	@Override
+	public List<JadwalJagaModel> getJadwalJagaList() {
+		return jadwalJagaDb.findAll();
+	}
+
 }
